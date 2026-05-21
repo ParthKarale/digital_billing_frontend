@@ -46,8 +46,9 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 py-12 px-4">
       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-        <h2 className="text-3xl font-bold text-center text-slate-800 mb-6">
-          Digital Billing System
+        {/* Updated the Title to your brand! */}
+        <h2 className="text-3xl font-bold text-center text-black mb-6">
+          Parth's Digital Billing
         </h2>
 
         {/* Role Selection Tabs */}
@@ -55,7 +56,7 @@ export default function LoginPage() {
           <button
             onClick={() => setRole("owner")}
             className={`flex-1 py-2 rounded-md font-medium transition-colors ${
-              role === "owner" ? "bg-white shadow text-blue-600" : "text-slate-500 hover:text-slate-700"
+              role === "owner" ? "bg-white shadow text-blue-600" : "text-black hover:text-gray-700"
             }`}
           >
             Owner
@@ -63,7 +64,7 @@ export default function LoginPage() {
           <button
             onClick={() => setRole("employee")}
             className={`flex-1 py-2 rounded-md font-medium transition-colors ${
-              role === "employee" ? "bg-white shadow text-blue-600" : "text-slate-500 hover:text-slate-700"
+              role === "employee" ? "bg-white shadow text-blue-600" : "text-black hover:text-gray-700"
             }`}
           >
             Employee
@@ -78,26 +79,26 @@ export default function LoginPage() {
               {!isExisting && (
                 <>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700">Company Name</label>
-                    <input type="text" required value={companyName} onChange={(e) => setCompanyName(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Acme Corp" />
+                    <label className="block text-sm font-medium text-black">Company Name</label>
+                    <input type="text" required value={companyName} onChange={(e) => setCompanyName(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700">Company Phone</label>
-                    <input type="tel" required value={companyPhone} onChange={(e) => setCompanyPhone(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="+91 9876543210" />
+                    <label className="block text-sm font-medium text-black">Company Phone</label>
+                    <input type="tel" required value={companyPhone} onChange={(e) => setCompanyPhone(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700">Company Address</label>
-                    <textarea required value={companyAddress} onChange={(e) => setCompanyAddress(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="123 Business Park..." rows={2} />
+                    <label className="block text-sm font-medium text-black">Company Address</label>
+                    <textarea required value={companyAddress} onChange={(e) => setCompanyAddress(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black" rows={2} />
                   </div>
                 </>
               )}
               <div>
-                <label className="block text-sm font-medium text-slate-700">Email</label>
-                <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                <label className="block text-sm font-medium text-black">Email</label>
+                <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700">Password</label>
-                <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                <label className="block text-sm font-medium text-black">Password</label>
+                <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black" />
               </div>
             </>
           )}
@@ -108,18 +109,18 @@ export default function LoginPage() {
               {!isExisting && (
                 <>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700">Company Name</label>
-                    <input type="text" required value={companyName} onChange={(e) => setCompanyName(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Where do you work?" />
+                    <label className="block text-sm font-medium text-black">Company Name</label>
+                    <input type="text" required value={companyName} onChange={(e) => setCompanyName(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700">Your Full Name</label>
-                    <input type="text" required value={employeeName} onChange={(e) => setEmployeeName(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your name" />
+                    <label className="block text-sm font-medium text-black">Your Full Name</label>
+                    <input type="text" required value={employeeName} onChange={(e) => setEmployeeName(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black" />
                   </div>
                 </>
               )}
               <div>
-                <label className="block text-sm font-medium text-slate-700">6-Digit Access Key</label>
-                <input type="text" required maxLength={6} value={employeeKey} onChange={(e) => setEmployeeKey(e.target.value.replace(/\D/g, ""))} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-center tracking-widest text-lg" placeholder="000000" />
+                <label className="block text-sm font-medium text-black">6-Digit Access Key</label>
+                <input type="text" required maxLength={6} value={employeeKey} onChange={(e) => setEmployeeKey(e.target.value.replace(/\D/g, ""))} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black text-center tracking-widest text-lg" />
               </div>
             </>
           )}
@@ -129,7 +130,7 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-slate-500">
+        <p className="mt-6 text-center text-sm text-black">
           {isExisting ? "Don't have an account? " : "Already have an account? "}
           <button onClick={() => setIsExisting(!isExisting)} className="text-blue-600 hover:underline font-medium">
             {isExisting ? "Set one up" : "Sign in here"}
