@@ -32,14 +32,16 @@ export default function LoginPage() {
       } else {
         console.log("Owner Signup:", { email, password, companyName, companyPhone, companyAddress });
       }
-      // router.push("/dashboard"); 
+      // UNCOMMENTED THIS LINE:
+      router.push("/dashboard"); 
     } else {
       if (isExisting) {
         console.log("Employee Login:", { employeeKey });
       } else {
         console.log("Employee Activation:", { companyName, employeeName, employeeKey });
       }
-      // router.push("/inventory"); 
+      // UNCOMMENTED THIS LINE:
+      router.push("/pos"); 
     }
   };
 
