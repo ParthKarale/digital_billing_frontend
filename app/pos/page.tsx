@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import api from "../lib/api";
+import api from "../../lib/api";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 
 interface Customer { customer_id: number; full_name: string; phone_number: string; address: string; email: string; }
