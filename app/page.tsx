@@ -42,12 +42,12 @@ export default function Dashboard() {
   const [statusMessage, setStatusMessage] = useState("");
 
   const fetchData = async () => {
-    try {
-      const custRes = await api.get("/customer/"); setCustomers(custRes.data);
-      const prodRes = await api.get("/product/"); setProducts(prodRes.data);
-      const invRes = await api.get("/invoice/"); setInvoices(invRes.data);
-      const statsRes = await api.get("/analytics/"); setStats(statsRes.data);
-    } catch (error) { console.error("Failed to fetch data", error); }
+   try {
+    const custRes = await api.get("/customer"); setCustomers(custRes.data);
+    const prodRes = await api.get("/product"); setProducts(prodRes.data);
+    const invRes = await api.get("/invoice"); setInvoices(invRes.data);
+    const statsRes = await api.get("/analytics"); setStats(statsRes.data);
+} catch (error) { console.error("Failed to fetch data", error); }
   };
 
   useEffect(() => { fetchData(); }, []);
