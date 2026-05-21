@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   // In the future, we will read this from the login token!
-  const userRole = "owner"; // Change this to "employee" to test the UI!
+  const userRole: string = "owner"; // Change this to "employee" to test the UI!
 
   return (
     <html lang="en">
