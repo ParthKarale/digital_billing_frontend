@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const userRole = "owner"; // Change to "employee" to test the other view
+  const userRole: string = "owner"; // Change to "employee" to test the other view
   
   // This checks if we are on the login page so we can hide the navbar!
   const isLoginPage = pathname === "/login";
