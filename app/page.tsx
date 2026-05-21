@@ -330,7 +330,7 @@ We hope to see you again soon! Have a great day.`;
                         <td className="p-3"><div className="font-medium text-slate-800">{customer?.full_name || `Unknown`}</div><div className="text-xs text-slate-500">{customer?.phone_number || ""}</div></td>
                         <td className="p-3 font-medium text-slate-800">₹{inv.amount}</td>
                         <td className="p-3 flex justify-end gap-3">
-                          {inv.local_file_path && <a href={`http://localhost:8000/${inv.local_file_path}`} target="_blank" className="text-blue-600 hover:text-blue-800 font-medium transition-colors">PDF</a>}
+                          {inv.local_file_path && <a href={`${process.env.NEXT_PUBLIC_API_URL}/${inv.local_file_path}`} target="_blank" className="text-blue-600 hover:text-blue-800 font-medium transition-colors">PDF</a>}
                           {customer && <button onClick={() => sendWhatsApp(customer.phone_number, customer.full_name, inv.amount, inv.invoice_id)} className="text-emerald-600 hover:text-emerald-800 font-medium transition-colors">WhatsApp</button>}
                           <button onClick={() => handleDeleteInvoice(inv.invoice_id)} className="text-red-500 hover:text-red-700 font-medium transition-colors">Delete</button>
                         </td>
