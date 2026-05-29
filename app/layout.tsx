@@ -31,6 +31,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       <Link href="/dashboard" className="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Dashboard</Link>
                       <Link href="/inventory" className="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Manage Stock</Link>
                       <Link href="/staff" className="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Staff</Link>
+                      {/* ADD THIS NEW LINE: */}
+                      <Link href="/invoices" className="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Invoice History</Link>
                     </>
                   )}
                   {userRole === "employee" && (

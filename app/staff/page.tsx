@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 // ⚠️ PASTE YOUR RENDER URL HERE:
-const API_URL = "https://YOUR-BACKEND-NAME.onrender.com";
+const API_URL = "https://digital-billing-frontend.vercel.app/";
 
 export default function StaffPage() {
   const [generatedKey, setGeneratedKey] = useState("");
