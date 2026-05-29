@@ -35,7 +35,7 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
           <h3 className="text-sm font-medium text-slate-500">Total Revenue</h3>
-          <p className="text-3xl font-bold text-blue-600 mt-2">₹{data.total_revenue.toFixed(2)}</p>
+          <p className="text-3xl font-bold text-blue-600 mt-2">₹{Number(data.total_revenue).toFixed(2)}</p>
         </div>
         <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
           <h3 className="text-sm font-medium text-slate-500">Total Invoices</h3>

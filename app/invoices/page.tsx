@@ -52,7 +52,7 @@ export default function InvoicesPage() {
                 <td className="px-6 py-4 text-slate-600">
                   {new Date(inv.created_at).toLocaleDateString()}
                 </td>
-                <td className="px-6 py-4 font-bold text-slate-800">₹{inv.amount.toFixed(2)}</td>
+                <td className="px-6 py-4 font-bold text-slate-800">₹{Number(inv.amount).toFixed(2)}</td>
                 <td className="px-6 py-4 text-sm text-slate-500">
                   {inv.discount_percent > 0 && <span className="block text-green-600">-{inv.discount_percent}% Disc</span>}
                   {(inv.cgst_percent > 0 || inv.sgst_percent > 0) && (
