@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 
 // ⚠️ PASTE YOUR RENDER URL HERE:
-const API_URL = "https://digital-billing-frontend.vercel.app/"; 
+const API_URL = "https://digital-billing-backend.onrender.com"; 
 
 export default function DashboardPage() {
   const [data, setData] = useState({

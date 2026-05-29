@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 // ⚠️ PASTE YOUR LIVE RENDER URL HERE (No trailing slash)
-const API_URL = "https://digital-billing-frontend.vercel.app/";
+const API_URL = "https://digital-billing-backend.onrender.com";
 
 export default function InvoicesPage() {
   const [invoices, setInvoices] = useState([]);
