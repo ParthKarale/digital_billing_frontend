@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+// ⚠️ PASTE YOUR RENDER URL HERE (No trailing slash!):
+const API_URL = "https://digital-billing-backend.onrender.com";
+
 export default function LoginPage() {
   const router = useRouter();
   
@@ -26,29 +29,70 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (role === "owner") {
-      if (isExisting) {
-        console.log("Owner Login:", { email, password });
+    try {
+      if (role === "owner") {
+        if (isExisting) {
+          // --- OWNER LOGIN ---
+          const res = await fetch(`${API_URL}/api/owner/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+          });
+          
+          if (!res.ok) throw new Error("Invalid email or password");
+          
+          localStorage.setItem("userRole", "owner");
+          router.push("/dashboard"); 
+
+        } else {
+          // --- OWNER SIGNUP ---
+          const res = await fetch(`${API_URL}/api/owner/signup`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password, companyName, companyPhone, companyAddress })
+          });
+          
+          if (!res.ok) throw new Error("Email might already be registered");
+          
+          localStorage.setItem("userRole", "owner");
+          router.push("/dashboard"); 
+        }
       } else {
-        console.log("Owner Signup:", { email, password, companyName, companyPhone, companyAddress });
+        if (isExisting) {
+          // --- EMPLOYEE LOGIN ---
+          const res = await fetch(`${API_URL}/api/employee/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ employeeKey })
+          });
+          
+          if (!res.ok) throw new Error("Invalid or inactive access key");
+          
+          localStorage.setItem("userRole", "employee");
+          router.push("/pos"); 
+
+        } else {
+          // --- EMPLOYEE ACTIVATION ---
+          const res = await fetch(`${API_URL}/api/employee/activate`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ employeeName, employeeKey })
+          });
+          
+          if (!res.ok) throw new Error("Invalid key, or key has already been claimed");
+          
+          localStorage.setItem("userRole", "employee");
+          router.push("/pos"); 
+        }
       }
-      // UNCOMMENTED THIS LINE:
-      router.push("/dashboard"); 
-    } else {
-      if (isExisting) {
-        console.log("Employee Login:", { employeeKey });
-      } else {
-        console.log("Employee Activation:", { companyName, employeeName, employeeKey });
-      }
-      // UNCOMMENTED THIS LINE:
-      router.push("/pos"); 
+    } catch (err: any) {
+      alert(err.message); // Show a popup if login/signup fails
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 py-12 px-4">
       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-        {/* Updated the Title to your brand! */}
         <h2 className="text-3xl font-bold text-center text-black mb-6">
           Parth's Digital Billing
         </h2>
@@ -56,6 +100,7 @@ export default function LoginPage() {
         {/* Role Selection Tabs */}
         <div className="flex bg-slate-100 rounded-lg p-1 mb-6">
           <button
+            type="button"
             onClick={() => setRole("owner")}
             className={`flex-1 py-2 rounded-md font-medium transition-colors ${
               role === "owner" ? "bg-white shadow text-blue-600" : "text-black hover:text-gray-700"
@@ -64,6 +109,7 @@ export default function LoginPage() {
             Owner
           </button>
           <button
+            type="button"
             onClick={() => setRole("employee")}
             className={`flex-1 py-2 rounded-md font-medium transition-colors ${
               role === "employee" ? "bg-white shadow text-blue-600" : "text-black hover:text-gray-700"
@@ -111,10 +157,6 @@ export default function LoginPage() {
               {!isExisting && (
                 <>
                   <div>
-                    <label className="block text-sm font-medium text-black">Company Name</label>
-                    <input type="text" required value={companyName} onChange={(e) => setCompanyName(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black" />
-                  </div>
-                  <div>
                     <label className="block text-sm font-medium text-black">Your Full Name</label>
                     <input type="text" required value={employeeName} onChange={(e) => setEmployeeName(e.target.value)} className="mt-1 w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black" />
                   </div>
@@ -134,7 +176,7 @@ export default function LoginPage() {
 
         <p className="mt-6 text-center text-sm text-black">
           {isExisting ? "Don't have an account? " : "Already have an account? "}
-          <button onClick={() => setIsExisting(!isExisting)} className="text-blue-600 hover:underline font-medium">
+          <button type="button" onClick={() => setIsExisting(!isExisting)} className="text-blue-600 hover:underline font-medium">
             {isExisting ? "Set one up" : "Sign in here"}
           </button>
         </p>
