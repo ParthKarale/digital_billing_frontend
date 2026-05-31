@@ -9,19 +9,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const pathname = usePathname();
   const router = useRouter();
   
-  // 1. We replace the hardcoded "owner" with dynamic state
   const [userRole, setUserRole] = useState<string | null>(null);
-  
-  // This checks if we are on the login page so we can hide the navbar!
   const isLoginPage = pathname === "/login";
 
-  // 2. When the app loads, check the browser memory for who logged in
   useEffect(() => {
     const storedRole = localStorage.getItem("userRole");
     setUserRole(storedRole);
-  }, [pathname]); // This makes it re-check whenever you change pages
+  }, [pathname]); 
 
-  // 3. Clear memory safely when they log out
   const handleLogout = () => {
     localStorage.removeItem("userRole");
     setUserRole(null);
@@ -32,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="bg-slate-50 min-h-screen flex flex-col">
         
-        {/* Only show the Navbar if we are NOT on the login page AND a role exists */}
+        {/* TOP NAVIGATION BAR */}
         {!isLoginPage && userRole && (
           <nav className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,22 +38,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 
                 <div className="flex space-x-8 items-center">
                   
-                  {/* OWNER LINKS */}
+                  {/* --- OWNER LINKS --- */}
                   {userRole === "owner" && (
                     <>
-                      <Link href="/dashboard" className="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Dashboard</Link>
-                      <Link href="/inventory" className="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Manage Stock</Link>
-                      <Link href="/staff" className="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Staff</Link>
-                      <Link href="/invoices" className="text-slate-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Invoice History</Link>
+                      <Link href="/dashboard" className="text-black hover:text-blue-600 px-3 py-2 rounded-md text-sm font-bold transition-colors">Dashboard</Link>
+                      <Link href="/customers" className="text-black hover:text-blue-600 px-3 py-2 rounded-md text-sm font-bold transition-colors">Customers</Link>
+                      <Link href="/inventory" className="text-black hover:text-blue-600 px-3 py-2 rounded-md text-sm font-bold transition-colors">Manage Stock</Link>
+                      <Link href="/staff" className="text-black hover:text-blue-600 px-3 py-2 rounded-md text-sm font-bold transition-colors">Staff</Link>
+                      <Link href="/invoices" className="text-black hover:text-blue-600 px-3 py-2 rounded-md text-sm font-bold transition-colors">History</Link>
                     </>
                   )}
 
-                  {/* EMPLOYEES DON'T NEED EXTRA LINKS, THEY STAY ON POS */}
+                  {/* --- EMPLOYEE LINKS --- */}
+                  {userRole === "employee" && (
+                    <>
+                      <Link href="/pos" className="text-black hover:text-blue-600 px-3 py-2 rounded-md text-sm font-bold transition-colors">Create Bill</Link>
+                      <Link href="/invoices" className="text-black hover:text-blue-600 px-3 py-2 rounded-md text-sm font-bold transition-colors">History</Link>
+                      <Link href="/customers" className="text-black hover:text-blue-600 px-3 py-2 rounded-md text-sm font-bold transition-colors">Customers</Link>
+                    </>
+                  )}
                   
                   {/* LOGOUT BUTTON */}
                   <button 
                     onClick={handleLogout} 
-                    className="bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                    className="bg-slate-100 text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg text-sm font-bold transition-colors"
                   >
                     Logout
                   </button>
